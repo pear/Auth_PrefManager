@@ -70,6 +70,13 @@ class Auth_PrefManager
      */
     var $_valueColumn = "pref_value";
 
+	/**
+	 * The quoted value column.
+	 * @var string
+	 * @access private
+	 */
+	var $_valueColumnQuoted = "pref_value";
+	
     /**
      * The session variable that the cache array is stored in.
      * @var string
@@ -138,7 +145,8 @@ class Auth_PrefManager
             if (isset($properties["table"]))        { $this->_table = $this->_db->quoteIdentifier($properties["table"]); }
             if (isset($properties["userColumn"]))   { $this->_userColumn = $this->_db->quoteIdentifier($properties["userColumn"]); }
             if (isset($properties["nameColumn"]))   { $this->_nameColumn = $this->_db->quoteIdentifier($properties["nameColumn"]); }
-            if (isset($properties["valueColumn"]))  { $this->_valueColumn = $this->_db->quoteIdentifier($properties["valueColumn"]); }
+            if (isset($properties["valueColumn"]))  { $this->_valueColumn = $properties["valueColumn"]; }
+			if (isset($properties["valueColumn"]))  { $this->_valueColumnQuoted = $this->_db->quoteIdentifier($properties["valueColumn"]); }
             if (isset($properties["defaultUser"]))  { $this->_defaultUser = $properties["defaultUser"]; }
             if (isset($properties["cacheName"]))    { $this->_cacheName = $properties["cacheName"]; }
 	        if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
@@ -271,7 +279,7 @@ class Auth_PrefManager
         // an UPDATE, if not, it's an INSERT.
         if ($this->_exists($user_id, $pref_id, false)) {
             $query = sprintf("UPDATE %s SET %s=%s WHERE %s=%s AND %s=%s", $this->_table,
-                                                                          $this->_valueColumn,
+                                                                          $this->_valueColumnQuoted,
                                                                           $this->_db->quote($this->_pack($value)),
                                                                           $this->_userColumn,
                                                                           $this->_db->quote($user_id),
@@ -281,7 +289,7 @@ class Auth_PrefManager
             $query = sprintf("INSERT INTO %s (%s, %s, %s) VALUES(%s, %s, %s)", $this->_table,
                                                                                $this->_userColumn,
                                                                                $this->_nameColumn,
-                                                                               $this->_valueColumn,
+                                                                               $this->_valueColumnQuoted,
                                                                                $this->_db->quote($user_id),
                                                                                $this->_db->quote($pref_id),
                                                                                $this->_db->quote($this->_pack($value)));
