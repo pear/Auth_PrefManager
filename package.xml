@@ -17,7 +17,7 @@ to obtain the user's id - including your own code.</description>
     </maintainer>
   </maintainers>
   <release>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <date>2003-04-20</date>
     <license>PHP License</license>
     <state>stable</state>
@@ -34,6 +34,16 @@ to obtain the user's id - including your own code.</description>
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>1.0</version>
+      <date>2003-04-20</date>
+      <license>PHP License</license>
+      <state>stable</state>
+      <notes>
+      * Added a getDefaultPref method.
+      * Various bug fixes
+      </notes>
+    </release>
     <release>
       <version>0.2.31</version>
       <date>2003-03-24</date>
