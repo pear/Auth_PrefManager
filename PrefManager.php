@@ -13,7 +13,8 @@ require_once("DB.php");
  * )
  * 
  * @author Jon Wood <jon@jellybob.co.uk>
- * @pacakge Auth.PrefManager
+ * @package Auth_PrefManager
+ * @category Authentication
  */ 
 class Auth_PrefManager
 {
@@ -83,12 +84,12 @@ class Auth_PrefManager
      */
     var $_lastError;
 
-	/**
-	 * Defines whether the cache should be used or not.
-	 * @var bool
-	 * @access private
-	 */
-	var $_useCache = true;
+    /**
+     * Defines whether the cache should be used or not.
+     * @var bool
+     * @access private
+     */
+    var $_useCache = true;
 	
     /**
      * Defines whether values should be serialized before saving.
@@ -107,7 +108,7 @@ class Auth_PrefManager
      *  valueColumn: The field name to search for preference values [pref_value]
      *  defaultUser: The userid assigned to default values [__default__]
      *  cacheName: The name of cache in the session variable ($_SESSION[cacheName]) [prefsCache]
-	 *  useCache: Whether or not values should be cached.
+     *  useCache: Whether or not values should be cached.
      *  serialize: Should preference values be serialzed before saving?
      *
      * @param string $dsn The DSN of the database connection to make, or a DB object.
@@ -154,16 +155,16 @@ class Auth_PrefManager
         }
     }
 
-	/**
-	 * Sets whether the cache should be used.
-	 * 
-	 * @param bool $use Should the cache be used.
-	 * @access public
-	 */
-	function useCache($use = true)
-	{
-		$this->_useCache = $use;
-	}
+    /**
+     * Sets whether the cache should be used.
+     * 
+     * @param bool $use Should the cache be used.
+     * @access public
+     */
+    function useCache($use = true)
+    {
+        $this->_useCache = $use;
+    }
 	
     /**
      * Cleans out the cache.
@@ -193,7 +194,7 @@ class Auth_PrefManager
         } else {
             // Not cached, search the database for this user's preference.
             $query = sprintf("SELECT * FROM %s WHERE %s=%s AND %s=%s", $this->_table,
-			                                                           $this->_userColumn,
+	                                                               $this->_userColumn,
                                                                        $this->_db->quote($user_id),
                                                                        $this->_nameColumn,
                                                                        $this->_db->quote($pref_id));
@@ -216,7 +217,7 @@ class Auth_PrefManager
                     return $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id];
                 } else {
                     $query = sprintf("SELECT * FROM %s WHERE %s=%s AND %s=%s", $this->_table,
-			                                                                   $this->_userColumn,
+                                                                               $this->_userColumn,
                                                                                $this->_db->quote($this->_defaultUser),
                                                                                $this->_nameColumn,
                                                                                $this->_db->quote($pref_id));
@@ -290,9 +291,9 @@ class Auth_PrefManager
             $this->_lastError = "DB Error: ".$result->getMessage();
             return false;
         } else {
-			if ($this->_useCache) {
-			    $_SESSION[$this->_cacheName][$user_id][$pref_id] = $value;
-			}
+	    if ($this->_useCache) {
+	        $_SESSION[$this->_cacheName][$user_id][$pref_id] = $value;
+	    }
             return true;
         }
     }
@@ -354,30 +355,30 @@ class Auth_PrefManager
         $this->deletePref($this->_defaultUser, $pref_id);
     }
 	
-	/**
-	 * Checks if a preference exists in the database.  
-	 *
-	 * @param string $user_id The userid of the preference owner.
-	 * @param string $pref_id The preference to check for.
-	 * @return bool True if the preference exists.
-	 * @access private
-	 */
-	function _exists($user_id, $pref_id)
-	{
-		$query = sprintf("SELECT COUNT(%s) FROM %s WHERE %s=%s AND %s=%s", $this->_nameColumn,
+    /**
+     * Checks if a preference exists in the database.  
+     *
+     * @param string $user_id The userid of the preference owner.
+     * @param string $pref_id The preference to check for.
+     * @return bool True if the preference exists.
+     * @access private
+     */
+    function _exists($user_id, $pref_id)
+    {
+        $query = sprintf("SELECT COUNT(%s) FROM %s WHERE %s=%s AND %s=%s", $this->_nameColumn,
                                                                            $this->_table,
                                                                            $this->_userColumn,
-										       				               $this->_db->quote($user_id),
-																	       $this->_nameColumn,
-																	       $this->_db->quote($pref_id));
-	    $result = $this->_db->getOne($query);
-		if (DB::isError($result)) {
+                                                                           $this->_db->quote($user_id),
+                                                                           $this->_nameColumn,
+                                                                           $this->_db->quote($pref_id));
+        $result = $this->_db->getOne($query);
+        if (DB::isError($result)) {
             $this->_lastError = "DB Error: ".$result->getMessage();
             return false;
         } else {
             return (bool)$result;
         }
-	}
+    }
 
     /**
      * Does anything needed to prepare a value for saving in the database.
