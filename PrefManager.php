@@ -233,6 +233,19 @@ class Auth_PrefManager
     }
 
     /**
+    * A shortcut function for getPref($this->_defaultUser, $pref_id, $value),
+    * useful if you have a logged in user, but want to get defaults anyway.
+    *
+    * @param string $pref_id The name of the preference to get.
+    * @return mixed The value if it's found, or NULL if it isn't.
+    * @access public
+    */
+    function setDefaultPref($pref_id)
+    {
+        return $this->getPref($this->_defaultUser, $pref_id);
+    }
+
+    /**
      * Set a preference for the specified user.
      * 
      * @param string $user_id The user to set for.
@@ -276,7 +289,7 @@ class Auth_PrefManager
 
     /**
     * A shortcut function for setPref($this->_defaultUser, $pref_id, $value)
-    * 
+    *
     * @param string $pref_id The name of the preference to set.
     * @param mixed $value The value to set it to.
     * @return bool Sucess or failure.
