@@ -128,13 +128,16 @@ class Auth_PrefManager
     {
         // Connect to the database.
         if (isset($dsn)) {
-            if (is_subclass_of($dsn, 'db_common')) {
-                $this->_db = &$dsn;
-            } else {
-                $this->_db = DB::Connect($dsn);
+            if (is_string($dsn)) {
+				$this->_db = DB::Connect($dsn);
                 if (DB::isError($this->_db)) {
                     $this->_lastError = "DB Error: ".$this->_db->getMessage();
                 }
+			} else if (is_subclass_of($dsn, 'db_common')) {
+                $this->_db = &$dsn;
+            } else {
+				$this->_lastError = "Invalid DSN specified.";
+				return false;
             }
         } else {
             $this->_lastError = "No DSN specified.";
