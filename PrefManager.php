@@ -140,7 +140,7 @@ class Auth_PrefManager
             if (isset($properties["valueColumn"]))  { $this->_valueColumn = $properties["valueColumn"]; }
             if (isset($properties["defaultUser"]))  { $this->_defaultUser = $properties["defaultUser"]; }
             if (isset($properties["cacheName"]))    { $this->_cacheName = $properties["cacheName"]; }
-			if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
+	    if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
             if (isset($properties["serialize"]))    { $this->_serialize = $properties["serialize"]; }
         }
 
@@ -205,7 +205,7 @@ class Auth_PrefManager
             } else if ($result->numRows()) {
                 // The query found a value, so we can cache that, and then return it.
                 $row = $result->fetchRow(DB_FETCHMODE_ASSOC);
-                $_SESSION[$this->_cacheName][$user_id][$pref_id] = $row[$this->_valueColumn];
+                $_SESSION[$this->_cacheName][$user_id][$pref_id] = $this->_unpack($row[$this->_valueColumn]);
                 return $_SESSION[$this->_cacheName][$user_id][$pref_id];
             } else if ($this->_returnDefaults && $showDefaults) {
                 // I was doing this with a call to getPref again, but it threw things into an
