@@ -17,7 +17,7 @@ to obtain the user's id - including your own code.</description>
     </maintainer>
   </maintainers>
   <release>
-    <version>0.2.4</version>
+    <version>1.0</version>
     <date>2003-04-20</date>
     <license>PHP License</license>
     <state>stable</state>
