@@ -199,7 +199,6 @@ class Auth_PrefManager
                                                                        $this->_nameColumn,
                                                                        $this->_db->quote($pref_id));
             $result = $this->_db->query($query);
-            echo $query;
             if (DB::isError($result)) {
                 // Ouch! The query failed!
                 $this->_lastError = "DB Error: ".$result->getMessage();
