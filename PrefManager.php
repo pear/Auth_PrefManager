@@ -102,7 +102,7 @@ class Auth_PrefManager
      *  cacheName: The name of cache in the session variable ($_SESSION[cacheName]) [prefsCache]
 	 *  useCache: Whether or not values should be cached.
      * 
-     * @param string $dsn The DSN of the database connection to make.
+     * @param string $dsn The DSN of the database connection to make, or a DB object.
      * @param array $properties An array of properties to set.
      * @param string $defaultUser The default user to manage for.
      * @return bool Success or failure.
@@ -111,10 +111,14 @@ class Auth_PrefManager
     function Auth_PrefManager($dsn, $properties = NULL)
     {
         // Connect to the database.
-        if ($dsn && ($dsn != "")) {
-            $this->_db = DB::Connect($dsn);
-            if (DB::isError($this->_db)) {
-                $this->_lastError = "DB Error: ".$this->_db->getMessage();
+        if (isset($dsn)) {
+            if (is_subclass_of($dsn, 'db_common')) {
+                $this->_db = &$dsn;
+            } else {
+                $this->_db = DB::Connect($dsn);
+                if (DB::isError($this->_db)) {
+                    $this->_lastError = "DB Error: ".$this->_db->getMessage();
+                }
             }
         } else {
             $this->_lastError = "No DSN specified.";
