@@ -13,6 +13,7 @@ require_once("DB.php");
  * }
  * 
  * @author Jon Wood <jon@jellybob.co.uk>
+ * @pacakge Auth.PrefManager
  */ 
 class Auth_PrefManager
 {
