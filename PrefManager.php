@@ -240,7 +240,7 @@ class Auth_PrefManager
     * @return mixed The value if it's found, or NULL if it isn't.
     * @access public
     */
-    function setDefaultPref($pref_id)
+    function getDefaultPref($pref_id)
     {
         return $this->getPref($this->_defaultUser, $pref_id);
     }
