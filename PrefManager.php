@@ -355,11 +355,12 @@ class Auth_PrefManager
 	 */
 	function _exists($user_id, $pref_id)
 	{
-		$query = sprintf("SELECT COUNT(pref_id) FROM %s WHERE %s=%s AND %s=%s", $this->_table,
-                                                                                $this->_userColumn,
-																	            $this->_db->quote($user_id),
-																	            $this->_nameColumn,
-																	            $this->_db->quote($pref_id));
+		$query = sprintf("SELECT COUNT(%s) FROM %s WHERE %s=%s AND %s=%s", $this->_nameColumn,
+                                                                           $this->_table,
+                                                                           $this->_userColumn,
+										       				               $this->_db->quote($user_id),
+																	       $this->_nameColumn,
+																	       $this->_db->quote($pref_id));
 	    $result = $this->_db->getOne($query);
 		if (DB::isError($result)) {
             $this->_lastError = "DB Error: ".$result->getMessage();
