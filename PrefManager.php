@@ -363,7 +363,7 @@ class Auth_PrefManager
     */
     function deleteDefaultPref($pref_id)
     {
-        $this->deletePref($this->_defaultUser, $pref_id);
+        return $this->deletePref($this->_defaultUser, $pref_id);
     }
 	
     /**
