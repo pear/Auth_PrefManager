@@ -10,7 +10,7 @@ require_once("DB.php");
  * `pref_id` varchar( 32 ) NOT NULL default '',
  * `pref_value` longtext NOT NULL ,
  * 	PRIMARY KEY ( `user_id` , `pref_id` )
- * }
+ * )
  * 
  * @author Jon Wood <jon@jellybob.co.uk>
  * @pacakge Auth.PrefManager
@@ -91,6 +91,13 @@ class Auth_PrefManager
 	var $_useCache = true;
 	
     /**
+     * Defines whether values should be serialized before saving.
+     * @var bool
+     * @access private
+     */
+    var $_serialize = false;
+    
+    /**
      * Constructor
      * 
      * Options:
@@ -101,7 +108,8 @@ class Auth_PrefManager
      *  defaultUser: The userid assigned to default values [__default__]
      *  cacheName: The name of cache in the session variable ($_SESSION[cacheName]) [prefsCache]
 	 *  useCache: Whether or not values should be cached.
-     * 
+     *  serialize: Should preference values be serialzed before saving?
+     *
      * @param string $dsn The DSN of the database connection to make, or a DB object.
      * @param array $properties An array of properties to set.
      * @param string $defaultUser The default user to manage for.
@@ -133,6 +141,7 @@ class Auth_PrefManager
             if (isset($properties["defaultUser"]))  { $this->_defaultUser = $properties["defaultUser"]; }
             if (isset($properties["cacheName"]))    { $this->_cacheName = $properties["cacheName"]; }
 			if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
+            if (isset($properties["serialize"]))    { $this->_serialize = $properties["serialize"]; }
         }
 
         return true;
@@ -218,7 +227,7 @@ class Auth_PrefManager
                     } else {
                         if ($result->numRows()) {
                             $row = $result->fetchRow(DB_FETCHMODE_ASSOC);
-                            $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id] = $row[$this->_valueColumn];
+                            $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id] = $this->_unpack($row[$this->_valueColumn]);
                             $_SESSION[$this->_cacheName][$user_id][$pref_id] = $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id];
                             return $_SESSION[$this->_cacheName][$user_id][$pref_id];
                         } else {
@@ -261,12 +270,12 @@ class Auth_PrefManager
         // an UPDATE, if not, it's an INSERT.
         if ($this->_exists($user_id, $pref_id, false)) {
             $query = sprintf("UPDATE %s SET %s=%s WHERE %s=%s AND %s=%s", $this->_table,
-                                                                            $this->_valueColumn,
-                                                                            $this->_db->quote($value),
-                                                                            $this->_userColumn,
-                                                                            $this->_db->quote($user_id),
-                                                                            $this->_nameColumn,
-                                                                            $this->_db->quote($pref_id));
+                                                                          $this->_valueColumn,
+                                                                          $this->_db->quote($this->_pack($value)),
+                                                                          $this->_userColumn,
+                                                                          $this->_db->quote($user_id),
+                                                                          $this->_nameColumn,
+                                                                          $this->_db->quote($pref_id));
         } else {
             $query = sprintf("INSERT INTO %s (%s, %s, %s) VALUES(%s, %s, %s)", $this->_table,
                                                                                $this->_userColumn,
@@ -274,7 +283,7 @@ class Auth_PrefManager
                                                                                $this->_valueColumn,
                                                                                $this->_db->quote($user_id),
                                                                                $this->_db->quote($pref_id),
-                                                                               $this->_db->quote($value));
+                                                                               $this->_db->quote($this->_pack($value)));
         }
         $result = $this->_db->query($query);
         if (DB::isError($result)) {
@@ -369,5 +378,37 @@ class Auth_PrefManager
             return (bool)$result;
         }
 	}
+
+    /**
+     * Does anything needed to prepare a value for saving in the database.
+     *
+     * @param mixed $value The value to be saved.
+     * @return string The value in a format valid for saving to the database.
+     * @access private
+     */
+    function _pack($value)
+    {
+        if ($this->_serialize) {
+            return serialize($value);
+        } else {
+            return $value;
+        }
+    }
+    
+    /**
+     * Does anything needed to create a value of the preference, such as unserializing.
+     *
+     * @param string $value The value of the preference.
+     * @return mixed The unpacked version of the preference.
+     * @access private
+     */
+    function _unpack($value)
+    {
+        if ($this->_serialize) {
+            return unserialize($value);
+        } else {
+            return $value;
+        }
+    }
 }
 ?>
