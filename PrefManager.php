@@ -121,17 +121,13 @@ class Auth_PrefManager
         }
 
         if (is_array($properties)) {
-            if ($properties["table"]) { $this->_table = $properties["table"]; }
-            if ($properties["userColumn"]) { $this->_userColumn = $properties["userColumn"]; }
-            if ($properties["nameColumn"]) { $this->_nameColumn = $properties["nameColumn"]; }
-            if ($properties["valueColumn"]) { $this->_valueColumn = $properties["valueColumn"]; }
-            if ($properties["defaultUser"]) { $this->_defaultUser = $properties["defaultUser"]; }
-            if ($properties["cacheName"]) { $this->_cacheName = $properties["cacheName"]; }
-			if ($properties["useCache"]) { $this->_useCache = $properties["useCache"]; }
-        }
-
-        if ($defaultUser && ($defaultUser != "")) {
-            $this->_defaultUser = $defaultUser;
+            if (isset($properties["table"]))        { $this->_table = $properties["table"]; }
+            if (isset($properties["userColumn"]))   { $this->_userColumn = $properties["userColumn"]; }
+            if (isset($properties["nameColumn"]))   { $this->_nameColumn = $properties["nameColumn"]; }
+            if (isset($properties["valueColumn"]))  { $this->_valueColumn = $properties["valueColumn"]; }
+            if (isset($properties["defaultUser"]))  { $this->_defaultUser = $properties["defaultUser"]; }
+            if (isset($properties["cacheName"]))    { $this->_cacheName = $properties["cacheName"]; }
+			if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
         }
 
         return true;
@@ -182,11 +178,11 @@ class Auth_PrefManager
             return $_SESSION[$this->_cacheName][$user_id][$pref_id];
         } else {
             // Not cached, search the database for this user's preference.
-            $query = sprintf("SELECT * FROM %s WHERE %s='%s' AND %s='%s'", $this->_table,
-			                                                               $this->_userColumn,
-                                                                           addslashes($user_id),
-                                                                           $this->_nameColumn,
-                                                                           addslashes($pref_id));
+            $query = sprintf("SELECT * FROM %s WHERE %s=%s AND %s=%s", $this->_table,
+			                                                           $this->_userColumn,
+                                                                       $this->_db->quote($user_id),
+                                                                       $this->_nameColumn,
+                                                                       $this->_db->quote($pref_id));
             $result = $this->_db->query($query);
             if (DB::isError($result)) {
                 // Ouch! The query failed!
@@ -205,11 +201,11 @@ class Auth_PrefManager
                     $_SESSION[$this->_cacheName][$user_id][$pref_id] = $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id];
                     return $_SESSION[$this->_cacheName][$this->_defaultUser][$pref_id];
                 } else {
-                    $query = sprintf("SELECT * FROM %s WHERE %s='%s' AND %s='%s'", $this->_table,
-			                                                                       $this->_userColumn,
-                                                                                   addslashes($this->_defaultUser),
-                                                                                   $this->_nameColumn,
-                                                                                   addslashes($pref_id));
+                    $query = sprintf("SELECT * FROM %s WHERE %s=%s AND %s=%s", $this->_table,
+			                                                                   $this->_userColumn,
+                                                                               $this->_db->quote($this->_defaultUser),
+                                                                               $this->_nameColumn,
+                                                                               $this->_db->quote($pref_id));
                     $result = $this->_db->query($query);
                     if (DB::isError($result)) {
                         $this->_lastError = "DB Error: ".$result->getMessage();
@@ -259,21 +255,21 @@ class Auth_PrefManager
         // Start off by checking if the preference is already set (if it is we need to do
         // an UPDATE, if not, it's an INSERT.
         if ($this->_exists($user_id, $pref_id, false)) {
-            $query = sprintf("UPDATE %s SET %s='%s' WHERE %s='%s' AND %s='%s'", $this->_table,
-                                                                                $this->_valueColumn,
-                                                                                addslashes($value),
-                                                                                $this->_userColumn,
-                                                                                addslashes($user_id),
-                                                                                $this->_nameColumn,
-                                                                                addslashes($pref_id));
+            $query = sprintf("UPDATE %s SET %s='%s' WHERE %s=%s AND %s=%s", $this->_table,
+                                                                            $this->_valueColumn,
+                                                                            $this->_db->quote($value),
+                                                                            $this->_userColumn,
+                                                                            $this->_db->quote($user_id),
+                                                                            $this->_nameColumn,
+                                                                            $this->_db->quote($pref_id));
         } else {
-            $query = sprintf("INSERT INTO %s (%s, %s, %s) VALUES('%s', '%s', '%s')", $this->_table,
-                                                                                     $this->_userColumn,
-                                                                                     $this->_nameColumn,
-                                                                                     $this->_valueColumn,
-                                                                                     addslashes($user_id),
-                                                                                     addslashes($pref_id),
-                                                                                     addslashes($value));
+            $query = sprintf("INSERT INTO %s (%s, %s, %s) VALUES(%s, %s, %s)", $this->_table,
+                                                                               $this->_userColumn,
+                                                                               $this->_nameColumn,
+                                                                               $this->_valueColumn,
+                                                                               $this->_db->quote($user_id),
+                                                                               $this->_db->quote($pref_id),
+                                                                               $this->_db->quote($value));
         }
         $result = $this->_db->query($query);
         if (DB::isError($result)) {
@@ -314,11 +310,11 @@ class Auth_PrefManager
             // The user doesn't have this variable anyway ;)
             return true;
         } else {
-            $query = sprintf("DELETE FROM %s WHERE %s='%s' AND %s='%s'", $this->_table,
-                                                                         $this->_userColumn,
-                                                                         addslashes($user_id),
-                                                                         $this->_nameColumn,
-                                                                         addslashes($pref_id));
+            $query = sprintf("DELETE FROM %s WHERE %s=%s AND %s=%s", $this->_table,
+                                                                     $this->_userColumn,
+                                                                     $this->_db->quote($user_id),
+                                                                     $this->_nameColumn,
+                                                                     $this->_db->quote($pref_id));
             $result = $this->_db->query($query);
             if (DB::isError($result)) {
                 $this->_lastError = "DB Error: ".$result->getMessage();
@@ -354,21 +350,17 @@ class Auth_PrefManager
 	 */
 	function _exists($user_id, $pref_id)
 	{
-		$query = sprintf("SELECT * FROM %s WHERE %s='%s' AND %s='%s'", $this->_table,
-                                                                       $this->_userColumn,
-																	   addslashes($user_id),
-																	   $this->_nameColumn,
-																	   addslashes($pref_id));
-	    $result = $this->_db->query($query);
+		$query = sprintf("SELECT COUNT(pref_id) FROM %s WHERE %s=%s AND %s=%s", $this->_table,
+                                                                                $this->_userColumn,
+																	            $this->_db->quote($user_id),
+																	            $this->_nameColumn,
+																	            $this->_db->quote($pref_id));
+	    $result = $this->_db->getOne($query);
 		if (DB::isError($result)) {
             $this->_lastError = "DB Error: ".$result->getMessage();
             return false;
         } else {
-            if ($result->numRows()) {
-                return true;
-            } else {
-				return false;
-			}
+            return (bool)$result;
         }
 	}
 }
