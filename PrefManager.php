@@ -15,7 +15,7 @@ require_once("DB.php");
  * @author Jon Wood <jon@jellybob.co.uk>
  * @package Auth_PrefManager
  * @category Authentication
- */ 
+ */
 class Auth_PrefManager
 {
     /**
@@ -135,13 +135,13 @@ class Auth_PrefManager
         }
 
         if (is_array($properties)) {
-            if (isset($properties["table"]))        { $this->_table = $properties["table"]; }
-            if (isset($properties["userColumn"]))   { $this->_userColumn = $properties["userColumn"]; }
-            if (isset($properties["nameColumn"]))   { $this->_nameColumn = $properties["nameColumn"]; }
-            if (isset($properties["valueColumn"]))  { $this->_valueColumn = $properties["valueColumn"]; }
+            if (isset($properties["table"]))        { $this->_table = $this->_db->quoteIdentifier($properties["table"]); }
+            if (isset($properties["userColumn"]))   { $this->_userColumn = $this->_db->quoteIdentifier($properties["userColumn"]); }
+            if (isset($properties["nameColumn"]))   { $this->_nameColumn = $this->_db->quoteIdentifier($properties["nameColumn"]); }
+            if (isset($properties["valueColumn"]))  { $this->_valueColumn = $this->_db->quoteIdentifier($properties["valueColumn"]); }
             if (isset($properties["defaultUser"]))  { $this->_defaultUser = $properties["defaultUser"]; }
             if (isset($properties["cacheName"]))    { $this->_cacheName = $properties["cacheName"]; }
-	    if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
+	        if (isset($properties["useCache"]))     { $this->_useCache = $properties["useCache"]; }
             if (isset($properties["serialize"]))    { $this->_serialize = $properties["serialize"]; }
         }
 
@@ -199,6 +199,7 @@ class Auth_PrefManager
                                                                        $this->_nameColumn,
                                                                        $this->_db->quote($pref_id));
             $result = $this->_db->query($query);
+            echo $query;
             if (DB::isError($result)) {
                 // Ouch! The query failed!
                 $this->_lastError = "DB Error: ".$result->getMessage();
