@@ -255,7 +255,7 @@ class Auth_PrefManager
         // Start off by checking if the preference is already set (if it is we need to do
         // an UPDATE, if not, it's an INSERT.
         if ($this->_exists($user_id, $pref_id, false)) {
-            $query = sprintf("UPDATE %s SET %s='%s' WHERE %s=%s AND %s=%s", $this->_table,
+            $query = sprintf("UPDATE %s SET %s=%s WHERE %s=%s AND %s=%s", $this->_table,
                                                                             $this->_valueColumn,
                                                                             $this->_db->quote($value),
                                                                             $this->_userColumn,
