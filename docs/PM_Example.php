@@ -1,5 +1,5 @@
 <?php
-    require_once("Auth/preferences.php");
+    require_once("Auth/PrefManager.php");
     $options = array("table" => "user_prefs");
     $prefs = new PrefManager($dsn, $options);
     
