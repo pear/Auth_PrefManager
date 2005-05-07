@@ -42,8 +42,6 @@ require_once('DB.php');
  * 	PRIMARY KEY ( `user_id` , `pref_id` )
  * )
  *
- * Long description for class (if any)...
- *
  * @category   Authentication
  * @package    PrefManager
  * @author     Jon Wood <jon@substance-it.co.uk>
