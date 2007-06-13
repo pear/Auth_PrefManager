@@ -35,7 +35,13 @@ to obtain the user&apos;s id - including your own code.
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
- * Fix Bug #9469. Attempts to use DB connection even if error generated while connecting.
+ * Moved DB connection out of constructor so connection is only made when
+   needed and error handling can be done properly.
+ * Added option to return PEAR_Error objects when a problem occurs.
+ * General code cleanup.
+ * Switched to package.xml 2.0.
+ * Fix Bug #9469. Attempts to use DB connection even if error generated
+   while connecting.
  </notes>
  <contents>
   <dir name="/">
