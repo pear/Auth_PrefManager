@@ -28,7 +28,7 @@
 /**
  * Load DB for data access.
  */
-require_once('DB.php');
+require_once 'DB.php';
 
 /**
  * Main PrefManager class.
@@ -166,6 +166,7 @@ class Auth_PrefManager
 				$this->_db = DB::Connect($dsn);
                 if (DB::isError($this->_db)) {
                     $this->_lastError = "DB Error: ".$this->_db->getMessage();
+                    return false;
                 }
 			} else if (is_subclass_of($dsn, 'db_common')) {
                 $this->_db = &$dsn;
