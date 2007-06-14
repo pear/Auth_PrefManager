@@ -212,6 +212,9 @@ class Auth_PrefManager
             if (isset($properties["serialize"])) {
                 $this->_serialize = $properties["serialize"];
             }
+            if (isset($properties["usePEARError"])) {
+                $this->_usePEARError = $properties['usePEARError'];
+            }
         }
     }
 
