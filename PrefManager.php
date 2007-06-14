@@ -386,7 +386,7 @@ class Auth_PrefManager
     {
         $err = $this->_prepare();
         if ($err !== true) {
-            return $this->_handleError($err->getMessage(), $err->getCode(), null);
+            return $this->_handleError($err->getMessage(), $err->getCode(), false);
         }
 
         // Start off by checking if the preference is already set (if it is we need to do
@@ -396,16 +396,16 @@ class Auth_PrefManager
         if (PEAR::isError($exists)) {
             return $this->_handleError($exists->getMessage(), $exists->getCode(), false);
         } elseif ($exists === true) {
-            $sql = "UPDATE ! SET ? = ? WHERE ? = ? AND ? = ?";
+            $sql = "UPDATE ! SET ! = ? WHERE ! = ? AND ! = ?";
 
             $result = $this->_db->query($sql,
                     array(
-                        $this->_table,
-                        $this->valueColumn,
+                        $this->_db->quoteIdentifier($this->_table),
+                        $this->_db->quoteIdentifier($this->_valueColumn),
                         $this->_pack($value),
-                        $this->_userColumn,
+                        $this->_db->quoteIdentifier($this->_userColumn),
                         $user_id,
-                        $this->_nameColumn,
+                        $this->_db->quoteIdentifier($this->_nameColumn),
                         $pref_id,
                         )
                     );
@@ -467,7 +467,7 @@ class Auth_PrefManager
     {
         $err = $this->_prepare();
         if ($err !== true) {
-            return $this->_handleError($err->getMessage(), $err->getCode(), null);
+            return $this->_handleError($err->getMessage(), $err->getCode(), false);
         }
 
         $exists = $this->_exists($user_id, $pref_id);
@@ -575,9 +575,8 @@ class Auth_PrefManager
                     $pref_id,
                     )
                 );
-        $result = $this->_db->getOne($query);
         if (DB::isError($result)) {
-            $this->_lastError = "DB Error: ".$result->getMessage();
+            $this->_lastError = $result->getMessage();
             return PEAR::raiseError($result->getMessage(), $result->getCode());
         } else {
             return $result > 0;
