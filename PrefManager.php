@@ -207,7 +207,7 @@ class Auth_PrefManager
                 $this->_cacheName = $properties["cacheName"];
             }
             if (isset($properties["useCache"])) {
-                $this->useCache($properties["useCache"])
+                $this->useCache($properties["useCache"]);
             }
             if (isset($properties["serialize"])) {
                 $this->_serialize = $properties["serialize"];
@@ -535,7 +535,7 @@ class Auth_PrefManager
             return PEAR::raiseError($dsn->getMessage(), $dsn->getCode());
         } else {
             $this->_lastError = "Invalid DSN specified.";
-            return PEAR::raiseError('The given DSN was not valid in file ' . __FILE__ ' at line ' . __LINE__,
+            return PEAR::raiseError('The given DSN was not valid in file ' . __FILE__ . ' at line ' . __LINE__,
                     41,
                     PEAR_ERROR_RETURN);
         }
