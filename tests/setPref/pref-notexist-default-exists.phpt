@@ -27,12 +27,16 @@ if ($result === false) {
 
 } else {
 
-	$value = $pref->getPref('jbloggs', 'foo');
+	$defaultValue = $pref->getDefaultPref('foo');
+	$userValue = $pref->getPref('jbloggs', 'foo');
 
-	print "jbloggs:foo:".$value;
+	print "default:foo:".formatValue($defaultValue)
+		."\n"
+		."jbloggs:foo:".formatValue($userValue);
 
 }
 
 ?>
 --EXPECT--
-jbloggs:foo:spoon
+default:foo:"bar"
+jbloggs:foo:"spoon"

@@ -1,5 +1,5 @@
 --TEST--
-Auth_PrefManager::getPref(): Database Error. PEAR Error Reporting.
+Auth_PrefManager::setDefaultPref(): Database Error. PEAR Error Reporting.
 --FILE--
 <?php
 
@@ -23,17 +23,17 @@ $pref = new Auth_PrefManager($GLOBALS['dsn'],
 			'usePEARError' => true,
 			));
 
-$value = $pref->getPref('jbloggs', 'foo');
+$result = $pref->setDefaultPref('foo', 'spoon');
 
-if (PEAR::isError($value)) {
+if (PEAR::isError($result)) {
 
 	print "ok\n"
-		.$value->getMessage();
+		.$result->getMessage();
 
 } else {
 
 	print "failure\n";
-	print_r($value);
+	print_r($result);
 
 }
 

@@ -1,19 +1,11 @@
 --TEST--
-Auth_PrefManager::setPref(): Preference exists.
+Auth_PrefManager::setDefaultPref(): Preference not exist. Default does not exist.
 --FILE--
 <?php
 
 require 'setup.php';
 
 createDatabase(
-		array(
-			'__default__' => array(
-				'foo' => 'bar',
-				),
-			'jbloggs' => array(
-				'foo' => 'baz',
-				),
-			)
 		);
 
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
@@ -21,7 +13,7 @@ $pref = new Auth_PrefManager($GLOBALS['dsn'],
 			'table' => $GLOBALS['tableName'],
 			));
 
-$result = $pref->setPref('jbloggs', 'foo', 'spoon');
+$result = $pref->setDefaultPref('foo', 'spoon');
 
 if ($result === false) {
 
@@ -41,5 +33,5 @@ if ($result === false) {
 
 ?>
 --EXPECT--
-default:foo:"bar"
+default:foo:"spoon"
 jbloggs:foo:"spoon"

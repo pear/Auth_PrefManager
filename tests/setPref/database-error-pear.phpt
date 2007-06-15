@@ -1,5 +1,5 @@
 --TEST--
-Auth_PrefManager::setPref(): Preference exists.
+Auth_PrefManager::setPref(): Database Error. PEAR Error Reporting.
 --FILE--
 <?php
 
@@ -19,27 +19,25 @@ createDatabase(
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
 		array(
 			'table' => $GLOBALS['tableName'],
+			'userColumn' => 'notexist',
+			'usePEARError' => true,
 			));
 
 $result = $pref->setPref('jbloggs', 'foo', 'spoon');
 
-if ($result === false) {
+if (PEAR::isError($result)) {
 
-	print "failure\n"
-		.$pref->_lastError;
+	print "ok\n"
+		.$result->getMessage();
 
 } else {
 
-	$defaultValue = $pref->getDefaultPref('foo');
-	$userValue = $pref->getPref('jbloggs', 'foo');
-
-	print "default:foo:".formatValue($defaultValue)
-		."\n"
-		."jbloggs:foo:".formatValue($userValue);
+	print "failure\n";
+	print_r($result);
 
 }
 
 ?>
 --EXPECT--
-default:foo:"bar"
-jbloggs:foo:"spoon"
+ok
+DB Error: no such field

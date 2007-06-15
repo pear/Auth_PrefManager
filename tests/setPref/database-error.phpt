@@ -1,5 +1,5 @@
 --TEST--
-Auth_PrefManager::setPref(): Preference exists.
+Auth_PrefManager::setPref(): Database Error. Classic Reporting.
 --FILE--
 <?php
 
@@ -19,27 +19,24 @@ createDatabase(
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
 		array(
 			'table' => $GLOBALS['tableName'],
+			'userColumn' => 'notexist',
 			));
 
 $result = $pref->setPref('jbloggs', 'foo', 'spoon');
 
 if ($result === false) {
 
-	print "failure\n"
+	print "ok\n"
 		.$pref->_lastError;
 
 } else {
 
-	$defaultValue = $pref->getDefaultPref('foo');
-	$userValue = $pref->getPref('jbloggs', 'foo');
-
-	print "default:foo:".formatValue($defaultValue)
-		."\n"
-		."jbloggs:foo:".formatValue($userValue);
+	print "failure\n";
+	print_r($value);
 
 }
 
 ?>
 --EXPECT--
-default:foo:"bar"
-jbloggs:foo:"spoon"
+ok
+DB Error: no such field

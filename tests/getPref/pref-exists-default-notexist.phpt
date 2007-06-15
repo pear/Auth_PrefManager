@@ -1,11 +1,17 @@
 --TEST--
-Auth_PrefManager::getPref(): Preference does not exist. Default does not exist.
+Auth_PrefManager::getPref(): Preference exists. Default does not exist.
 --FILE--
 <?php
 
 require 'setup.php';
 
-createDatabase();
+createDatabase(
+		array(
+			'jbloggs' => array(
+				'foo' => 'baz',
+				),
+			)
+		);
 
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
 		array(
@@ -22,4 +28,4 @@ print "default:foo:".formatValue($defaultValue)
 ?>
 --EXPECT--
 default:foo:NULL
-jbloggs:foo:NULL
+jbloggs:foo:"baz"

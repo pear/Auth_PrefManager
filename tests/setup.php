@@ -108,5 +108,47 @@ function cleanUpDatabase($tableName) {
 
 }
 
+function formatValue($value) {
+
+    if (is_null($value)) {
+
+        return "NULL";
+
+    } elseif (!isset($value)) {
+
+        return "(not set)";
+
+    } elseif (is_bool($value)) {
+
+        if ($value === true) {
+
+            return "TRUE";
+
+        } else {
+
+            return "FALSE";
+
+        }
+
+    } elseif (is_string($value)) {
+
+        return "\"$value\"";
+
+    } elseif (is_array($value)) {
+
+        return "Array(".count($value).")";
+
+    } elseif (is_object($value)) {
+
+        return "object ".get_class($value);
+
+    } else {
+
+        return $value;
+
+    }
+
+}
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 ?>
