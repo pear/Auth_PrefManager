@@ -23,11 +23,11 @@ to obtain the user&apos;s id - including your own code.
   <email>jon@jellybob.co.uk</email>
   <active>no</active>
  </lead>
- <date>2007-06-13</date>
- <time>06:30:12</time>
+ <date>2007-06-18</date>
+ <time>10:46:12</time>
  <version>
-  <release>1.1.5</release>
-  <api>1.1.0</api>
+  <release>1.2.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -48,6 +48,53 @@ to obtain the user&apos;s id - including your own code.
    <dir name="docs">
     <file name="PM_Example.php" role="doc" />
    </dir> <!-- //docs -->
+	 <dir name="tests">
+		<file name="setup.php" role="test" />
+		<dir name="deleteDefaultPref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="pref-exists-default-exists.phpt" role="test" />
+		 <file name="pref-exists-default-notexist.phpt" role="test" />
+		 <file name="pref-notexist-default-exist.phpt" role="test" />
+		 <file name="pref-notexist-default-notexist.phpt" role="test" />
+		</dir> <!-- //tests/deleteDefaultPref -->
+		<dir name="deletePref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="pref-exists-default-exists.phpt" role="test" />
+		 <file name="pref-exists-default-notexist.phpt" role="test" />
+		 <file name="pref-notexist-default-exist.phpt" role="test" />
+		 <file name="pref-notexist-default-notexist.phpt" role="test" />
+		</dir> <!-- //tests/deletePref -->
+		<dir name="getDefaultPref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="default-exists.phpt" role="test" />
+		 <file name="default-notexist.phpt" role="test" />
+		</dir> <!-- //tests/getDefaultPref -->
+		<dir name="getPref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="pref-exists-default-exists.phpt" role="test" />
+		 <file name="pref-exists-default-notexist.phpt" role="test" />
+		 <file name="pref-notexist-default-exist.phpt" role="test" />
+		 <file name="pref-notexist-default-notexist.phpt" role="test" />
+		</dir> <!-- //tests/getPref -->
+		<dir name="setDefaultPref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="pref-exists-default-exists.phpt" role="test" />
+		 <file name="pref-exists-default-notexist.phpt" role="test" />
+		 <file name="pref-notexist-default-exists.phpt" role="test" />
+		 <file name="pref-notexist-default-notexist.phpt" role="test" />
+		</dir> <!-- //tests/setDefaultPref -->
+		<dir name="setPref">
+		 <file name="database-error-pear.phpt" role="test" />
+		 <file name="database-error.phpt" role="test" />
+		 <file name="pref-exists-default-exists.phpt" role="test" />
+		 <file name="pref-notexist-default-exists.phpt" role="test" />
+		</dir> <!-- //tests/setPref -->
+	 </dir> <!-- //tests -->
    <file baseinstalldir="/Auth" name="PrefManager.php" role="php" />
   </dir> <!-- / -->
  </contents>
