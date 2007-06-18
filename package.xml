@@ -40,6 +40,7 @@ to obtain the user&apos;s id - including your own code.
  * Added option to return PEAR_Error objects when a problem occurs.
  * General code cleanup.
  * Switched to package.xml 2.0.
+ * Added test suite.
  * Fix Bug #9469. Attempts to use DB connection even if error generated
    while connecting.
  </notes>
