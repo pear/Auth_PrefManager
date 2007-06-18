@@ -25,6 +25,6 @@ print "default:foo:".formatvalue($defaultvalue)
   ."jbloggs:foo:".formatvalue($uservalue);
 
 ?>
---expect--
+--EXPECT--
 default:foo:NULL
 jbloggs:foo:"baz"

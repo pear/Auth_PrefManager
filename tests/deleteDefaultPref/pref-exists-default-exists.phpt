@@ -1,5 +1,5 @@
 --TEST--
-Auth_PrefManager::getPref(): Preference exists. Default exists.
+Auth_PrefManager::deleteDefaultPref(): Preference exists. Default exists.
 --FILE--
 <?php
 
@@ -28,7 +28,29 @@ print "default:foo:".formatvalue($defaultvalue)
   ."\n"
   ."jbloggs:foo:".formatvalue($uservalue);
 
+$result = $pref->deleteDefaultPref('foo');
+
+print "\n";
+
+if ($result === false) {
+
+  print "failure\n"
+    .$pref->_lastError;
+
+} else {
+
+  $defaultvalue = $pref->getdefaultpref('foo');
+  $uservalue = $pref->getpref('jbloggs', 'foo');
+
+  print "default:foo:".formatvalue($defaultvalue)
+    ."\n"
+    ."jbloggs:foo:".formatvalue($uservalue);
+
+}
+
 ?>
 --EXPECT--
 default:foo:"bar"
+jbloggs:foo:"baz"
+default:foo:NULL
 jbloggs:foo:"baz"
