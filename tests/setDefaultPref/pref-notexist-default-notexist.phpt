@@ -6,28 +6,28 @@ Auth_PrefManager::setDefaultPref(): Preference not exist. Default does not exist
 require 'setup.php';
 
 createDatabase(
-		);
+    );
 
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
-		array(
-			'table' => $GLOBALS['tableName'],
-			));
+    array(
+      'table' => $GLOBALS['tableName'],
+      ));
 
 $result = $pref->setDefaultPref('foo', 'spoon');
 
 if ($result === false) {
 
-	print "failure\n"
-		.$pref->_lastError;
+  print "failure\n"
+    .$pref->_lastError;
 
 } else {
 
-	$defaultValue = $pref->getDefaultPref('foo');
-	$userValue = $pref->getPref('jbloggs', 'foo');
+  $defaultValue = $pref->getDefaultPref('foo');
+  $userValue = $pref->getPref('jbloggs', 'foo');
 
-	print "default:foo:".formatValue($defaultValue)
-		."\n"
-		."jbloggs:foo:".formatValue($userValue);
+  print "default:foo:".formatValue($defaultValue)
+    ."\n"
+    ."jbloggs:foo:".formatValue($userValue);
 
 }
 

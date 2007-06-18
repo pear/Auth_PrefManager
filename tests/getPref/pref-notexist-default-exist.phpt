@@ -6,24 +6,24 @@ Auth_PrefManager::getPref(): Preference does not exist. Default does.
 require 'setup.php';
 
 createDatabase(
-		array(
-			'__default__' => array(
-				'foo' => 'bar',
-				),
-			)
-		);
+    array(
+      '__default__' => array(
+        'foo' => 'bar',
+        ),
+      )
+    );
 
 $pref = new Auth_PrefManager($GLOBALS['dsn'],
-		array(
-			'table' => $GLOBALS['tableName'],
-			));
+    array(
+      'table' => $GLOBALS['tableName'],
+      ));
 
 $defaultValue = $pref->getDefaultPref('foo');
 $userValue = $pref->getPref('jbloggs', 'foo');
 
 print "default:foo:".formatValue($defaultValue)
-	."\n"
-	."jbloggs:foo:".formatValue($userValue);
+  ."\n"
+  ."jbloggs:foo:".formatValue($userValue);
 
 ?>
 --EXPECT--
