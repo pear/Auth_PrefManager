@@ -7,6 +7,14 @@ require_once 'PrefManager.php';
 $dsn = "pgsql://test:test@unix(/var/run/postgresql/)/test";
 $tableName = null;
 
+$db = &DB::connect($dsn);
+
+if (DB::isError($db)) {
+    if ($db->getMessage() == "DB Error: extension not found") {
+        die("Skip You don't have the extension you need to connect to this database with the given DSN");
+    }
+}
+
 function createDatabase($defaultPrefs = array(), $tableName = null, $fieldNames = null) {
 
     $names = array(
@@ -22,7 +30,7 @@ function createDatabase($defaultPrefs = array(), $tableName = null, $fieldNames 
         $tableName = basename($_SERVER['SCRIPT_FILENAME'], ".php");
 
     $db = &DB::connect($GLOBALS['dsn']);
-
+var_dump($GLOBALS['dsn']);
     if (DB::isError($db)) {
 
         print "Failure connecting to database.\n"

@@ -1,9 +1,11 @@
 --TEST--
 Auth_PrefManager::setPref(): Database Error. Classic Reporting.
+--SKIPIF--
+<?php require dirname(dirname(__FILE__)) . '/setup.php'; ?>
 --FILE--
 <?php
 
-require 'setup.php';
+require dirname(dirname(__FILE__)) . '/setup.php';
 
 createDatabase(
     array(

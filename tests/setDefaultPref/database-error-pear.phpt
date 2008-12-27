@@ -1,5 +1,7 @@
 --TEST--
 Auth_PrefManager::setDefaultPref(): Database Error. PEAR Error Reporting.
+--SKIPIF--
+<?php require dirname(dirname(__FILE__)) . '/setup.php'; ?>
 --FILE--
 <?php
 

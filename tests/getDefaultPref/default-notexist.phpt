@@ -1,9 +1,11 @@
 --TEST--
 Auth_PrefManager::getDefaultPref(): Preference does exist. Default does not exist.
+--SKIPIF--
+<?php require dirname(dirname(__FILE__)) . '/setup.php'; ?>
 --FILE--
 <?php
 
-require 'setup.php';
+require dirname(dirname(__FILE__)) . '/setup.php';
 
 createDatabase(
     array(

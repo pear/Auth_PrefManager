@@ -1,5 +1,7 @@
 --TEST--
 Auth_PrefManager::setDefaultPref(): Preference exists. Default exists.
+--SKIPIF--
+<?php require dirname(dirname(__FILE__)) . '/setup.php'; ?>
 --FILE--
 <?php
 
