@@ -12,6 +12,8 @@ $db = &DB::connect($dsn);
 if (DB::isError($db)) {
     if ($db->getMessage() == "DB Error: extension not found") {
         die("Skip You don't have the extension you need to connect to this database with the given DSN");
+    } else {
+        die("Skip Could not connect to database.");
     }
 }
 
