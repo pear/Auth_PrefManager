@@ -96,7 +96,9 @@ to obtain the user&apos;s id - including your own code.
 		 <file name="pref-notexist-default-exists.phpt" role="test" />
 		</dir> <!-- //tests/setPref -->
 	 </dir> <!-- //tests -->
-   <file baseinstalldir="/Auth" name="PrefManager.php" role="php" />
+   <dir name="Auth">
+    <file baseinstalldir="Auth" name="PrefManager.php" role="php" />
+   </dir> <!-- /Auth -->
   </dir> <!-- / -->
  </contents>
  <dependencies>
