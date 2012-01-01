@@ -5,7 +5,7 @@ Auth_PrefManager::setDefaultPref(): Database Error. Classic Reporting.
 --FILE--
 <?php
 
-require 'setup.php';
+require dirname(dirname(__FILE__)) . '/setup.php';
 
 createDatabase(
     array(
