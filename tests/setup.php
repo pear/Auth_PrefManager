@@ -52,13 +52,8 @@ if (!empty($_ENV['MYSQL_TEST_USER']) && extension_loaded('mysqli')) {
         'service' => empty($_ENV['PGSQL_TEST_SERVICE'])
                 ? null : $_ENV['PGSQL_TEST_SERVICE'],
     );
-} elseif (!empty($_ENV['SQLITE_TEST_DB']) && extension_loaded('sqlite')) {
-    $dsn = array(
-        'phptype' => 'sqlite',
-        'database' => $_ENV['SQLITE_TEST_DB'],
-    );
 } else {
-    $dsn = "pgsql://test:test@unix(/var/run/postgresql/)/test";
+    die("skip DSN information not provided");
 }
 $tableName = null;
 
