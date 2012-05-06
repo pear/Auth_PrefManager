@@ -37,7 +37,7 @@ Bug #14877	Can&apos;t run unit tests from CVS without configuration
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="Auth" md5sum="fd7172e31c831398ed59d99467a267a6" name="Auth/PrefManager.php" role="php" />
+   <file baseinstalldir="/" md5sum="fd7172e31c831398ed59d99467a267a6" name="Auth/PrefManager.php" role="php" />
    <file baseinstalldir="/" md5sum="790e15722537c5e9de29bfceeb25065e" name="docs/PM_Example.php" role="doc" />
    <file baseinstalldir="/" md5sum="1da0c059c59d42fae2a1bc6ee667ca37" name="tests/setup.php" role="test" />
    <file baseinstalldir="/" md5sum="51669dd1ca7f9f54df852739c1fc7559" name="tests/deleteDefaultPref/database-error-pear.phpt" role="test" />
