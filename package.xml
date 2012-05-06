@@ -19,10 +19,10 @@ to obtain the user&apos;s id - including your own code.</description>
   <email>jon@jellybob.co.uk</email>
   <active>no</active>
  </lead>
- <date>2012-04-08</date>
- <time>06:06:05</time>
+ <date>2012-05-07</date>
+ <time>08:31:59</time>
  <version>
-  <release>1.2.1</release>
+  <release>1.2.2</release>
   <api>1.0.0</api>
  </version>
  <stability>
@@ -31,47 +31,47 @@ to obtain the user&apos;s id - including your own code.</description>
  </stability>
  <license uri="http://www.php.net/license">PHP License</license>
  <notes>
-QA Release
+QA release
 
-Bug #14877	Can&apos;t run unit tests from CVS without configuration
+Bug #19408	package installs files to extra Auth subdir
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" md5sum="fd7172e31c831398ed59d99467a267a6" name="Auth/PrefManager.php" role="php" />
-   <file baseinstalldir="/" md5sum="790e15722537c5e9de29bfceeb25065e" name="docs/PM_Example.php" role="doc" />
-   <file baseinstalldir="/" md5sum="1da0c059c59d42fae2a1bc6ee667ca37" name="tests/setup.php" role="test" />
-   <file baseinstalldir="/" md5sum="51669dd1ca7f9f54df852739c1fc7559" name="tests/deleteDefaultPref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="6fed0e67c6f80c431dc1b2a448da4882" name="tests/deleteDefaultPref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="06ac6dfc6127a8a9566de9107ea9ba03" name="tests/deleteDefaultPref/pref-exists-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="9a5901b51fb970edfaeef152890e7357" name="tests/deleteDefaultPref/pref-exists-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="367e74666c22914255fb113ff1fe2696" name="tests/deleteDefaultPref/pref-notexist-default-exist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="165a2b5373b8a4653c41f0ee2aa056f4" name="tests/deleteDefaultPref/pref-notexist-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="b33f0186d9bfdcf48827926cd1964b59" name="tests/deletePref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="03cecfbf947017b84c43a858f1e7f32d" name="tests/deletePref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="fea54d38a14e63f071857031a890f0c3" name="tests/deletePref/pref-exists-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="38b87db38f57bb73043a5a2af3fc1e12" name="tests/deletePref/pref-exists-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="59302bc3dff73ce921f9edcf87e1b1dc" name="tests/deletePref/pref-notexist-default-exist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="ce11f05c2821872429bbd17443c7958f" name="tests/deletePref/pref-notexist-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="069f610b0de0f4bb6f626a68b3b4ccbe" name="tests/getDefaultPref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="553fed1ecc5b8d701619bd572be07f0d" name="tests/getDefaultPref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="b2e601342becbd01f06e792f254dc084" name="tests/getDefaultPref/default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="978bd81e40b33e98ad91bd65fc35c7fb" name="tests/getDefaultPref/default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="ae50ff9e9fe7c614c1d64bb3ba1a7814" name="tests/getPref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="85748ba54cfeff9d5bfe318b8f42ab94" name="tests/getPref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="b2ed8d9ede7c1617998e737bd9b78188" name="tests/getPref/pref-exists-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="4491dfc10a1647046cc1e3edd1b00f62" name="tests/getPref/pref-exists-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="306ed9749ee1f7236d5d559bf3839190" name="tests/getPref/pref-notexist-default-exist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="5f3fde71724633bd77d2dc9ef7eaba35" name="tests/getPref/pref-notexist-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="f9e3b9b313690ac6cb412ab161a6fe37" name="tests/setDefaultPref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="909f945b3dc05e3af246bacf08708b13" name="tests/setDefaultPref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="f83199b4105b95f33a087191a8de6622" name="tests/setDefaultPref/pref-exists-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="74802987da05aa30d4d2931dbd89e111" name="tests/setDefaultPref/pref-exists-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="3be889b2ec2916493775fcf6382d9051" name="tests/setDefaultPref/pref-notexist-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="c938a39dd569de6f84a2fd533111228b" name="tests/setDefaultPref/pref-notexist-default-notexist.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="421188604f548f96763a565e70967730" name="tests/setPref/database-error-pear.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="8c05819ec3a41af5f929ac50ade2cbe9" name="tests/setPref/database-error.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="4df57affca7f0eb1a0d14abc61adfd16" name="tests/setPref/pref-exists-default-exists.phpt" role="test" />
-   <file baseinstalldir="/" md5sum="ec793262f4c9ee4fcc38298848c48535" name="tests/setPref/pref-notexist-default-exists.phpt" role="test" />
+   <file baseinstalldir="/" md5sum="fd7172e31c831398ed59d99467a267a6" name="/Auth/PrefManager.php" role="php" />
+   <file baseinstalldir="/" md5sum="790e15722537c5e9de29bfceeb25065e" name="/docs/PM_Example.php" role="php" />
+   <file baseinstalldir="/" md5sum="1da0c059c59d42fae2a1bc6ee667ca37" name="/tests/setup.php" role="php" />
+   <file baseinstalldir="/" md5sum="51669dd1ca7f9f54df852739c1fc7559" name="/tests/deleteDefaultPref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="6fed0e67c6f80c431dc1b2a448da4882" name="/tests/deleteDefaultPref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="06ac6dfc6127a8a9566de9107ea9ba03" name="/tests/deleteDefaultPref/pref-exists-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="9a5901b51fb970edfaeef152890e7357" name="/tests/deleteDefaultPref/pref-exists-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="367e74666c22914255fb113ff1fe2696" name="/tests/deleteDefaultPref/pref-notexist-default-exist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="165a2b5373b8a4653c41f0ee2aa056f4" name="/tests/deleteDefaultPref/pref-notexist-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="b33f0186d9bfdcf48827926cd1964b59" name="/tests/deletePref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="03cecfbf947017b84c43a858f1e7f32d" name="/tests/deletePref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="fea54d38a14e63f071857031a890f0c3" name="/tests/deletePref/pref-exists-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="38b87db38f57bb73043a5a2af3fc1e12" name="/tests/deletePref/pref-exists-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="59302bc3dff73ce921f9edcf87e1b1dc" name="/tests/deletePref/pref-notexist-default-exist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="ce11f05c2821872429bbd17443c7958f" name="/tests/deletePref/pref-notexist-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="069f610b0de0f4bb6f626a68b3b4ccbe" name="/tests/getDefaultPref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="553fed1ecc5b8d701619bd572be07f0d" name="/tests/getDefaultPref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="b2e601342becbd01f06e792f254dc084" name="/tests/getDefaultPref/default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="978bd81e40b33e98ad91bd65fc35c7fb" name="/tests/getDefaultPref/default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="ae50ff9e9fe7c614c1d64bb3ba1a7814" name="/tests/getPref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="85748ba54cfeff9d5bfe318b8f42ab94" name="/tests/getPref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="b2ed8d9ede7c1617998e737bd9b78188" name="/tests/getPref/pref-exists-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="4491dfc10a1647046cc1e3edd1b00f62" name="/tests/getPref/pref-exists-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="306ed9749ee1f7236d5d559bf3839190" name="/tests/getPref/pref-notexist-default-exist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="5f3fde71724633bd77d2dc9ef7eaba35" name="/tests/getPref/pref-notexist-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="f9e3b9b313690ac6cb412ab161a6fe37" name="/tests/setDefaultPref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="909f945b3dc05e3af246bacf08708b13" name="/tests/setDefaultPref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="f83199b4105b95f33a087191a8de6622" name="/tests/setDefaultPref/pref-exists-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="74802987da05aa30d4d2931dbd89e111" name="/tests/setDefaultPref/pref-exists-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="3be889b2ec2916493775fcf6382d9051" name="/tests/setDefaultPref/pref-notexist-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="c938a39dd569de6f84a2fd533111228b" name="/tests/setDefaultPref/pref-notexist-default-notexist.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="421188604f548f96763a565e70967730" name="/tests/setPref/database-error-pear.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="8c05819ec3a41af5f929ac50ade2cbe9" name="/tests/setPref/database-error.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="4df57affca7f0eb1a0d14abc61adfd16" name="/tests/setPref/pref-exists-default-exists.phpt" role="data" />
+   <file baseinstalldir="/" md5sum="ec793262f4c9ee4fcc38298848c48535" name="/tests/setPref/pref-notexist-default-exists.phpt" role="data" />
    <file baseinstalldir="/" md5sum="b942f604472b96370e0c5c205f1aec71" name="README" role="data" />
   </dir>
  </contents>
@@ -328,6 +328,23 @@ Bugfix release, submitted patches from the bug tracker.
 QA Release
 
 Bug #14877	Can&apos;t run unit tests from CVS without configuration
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-05-07</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+QA release
+
+Bug #19408	package installs files to extra Auth subdir
    </notes>
   </release>
  </changelog>
