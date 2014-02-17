@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Auth_PrefManager": "./"
+            "Auth": "./"
         }
     },
     "description": "More info available on: http://pear.php.net/package/Auth_PrefManager",
@@ -28,7 +28,8 @@
     },
     "type": "library",
     "require": {
-        "pear/pear_exception": "*"
+        "pear/pear_exception": "*",
+        "pear/db": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
