@@ -1,0 +1,37 @@
+{
+    "authors": [
+        {
+            "email": "php@adamashley.name",
+            "name": "Adam Ashley",
+            "role": "Lead"
+        },
+        {
+            "email": "jon@jellybob.co.uk",
+            "name": "Jon Wood",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Auth": "./"
+        }
+    },
+    "description": "More info available on: http://pear.php.net/package/Auth_PrefManager",
+    "include-path": [
+        "./"
+    ],
+    "license": "PHP License",
+    "name": "pear/auth_prefmanager",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Auth_PrefManager",
+        "source": "https://github.com/pear/Auth_PrefManager"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*",
+        "pear/db": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
